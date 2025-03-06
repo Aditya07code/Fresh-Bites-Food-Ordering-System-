@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 connectDB();
 
 
-app.use("/uploads", express.static("uploads"));
+app.use("/images", express.static("uploads"));
 app.use("/api/food",foodRouter);
 
 

@@ -1,5 +1,5 @@
 import express from "express";
-import { addFood } from "../controllers/foodController.js";
+import { addFood,listFood,removeFood } from "../controllers/foodController.js";
 import multer from "multer";
 import path from "path";
 import fs from "fs";
@@ -23,5 +23,8 @@ foodRouter.post("/add", (req, res, next) => {
     console.log("Received files:", req.files);
     next();
 }, upload.single("image"), addFood);
+
+foodRouter.get("/list",listFood);
+foodRouter.post("/remove",removeFood);
 
 export default foodRouter;
