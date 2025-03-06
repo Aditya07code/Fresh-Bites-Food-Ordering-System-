@@ -6,21 +6,16 @@ import fs from "fs";
 
 const foodRouter = express.Router();
 
-const uploadDir = "uploads";
-if (!fs.existsSync(uploadDir)) {
-    fs.mkdirSync(uploadDir);
-}
 
 const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, uploadDir);
-    },
+    destination: "uploads/",
     filename: (req, file, cb) => {
-        cb(null, `${Date.now()}${path.extname(file.originalname)}`);
-    }
+        cb(null, Date.now() + "-" + file.originalname);
+    },
 });
 
 const upload = multer({ storage });
+
 
 
 foodRouter.post("/add", (req, res, next) => {

@@ -12,13 +12,13 @@ export const addFood = async(req,res)=>{
 
 
 
-    let image_filename = req.file;
+  const image = req.file ? req.file.path.replace(/\\/g, "/") : null;
     const food = new foodModel({
         name:req.body.name,
         description:req.body.description,
         price:req.body.price,
         category:req.body.category,
-        image:image_filename
+        image:image
     })
     try {
         await food.save();
